@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿using System.Drawing;
 
-namespace ScottPlot.Drawing
+namespace ScottPlot
 {
     // this class stores the thing to be drawn upon, and the minimum
     // necessary information required to use a coordinate system.

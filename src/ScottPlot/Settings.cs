@@ -38,7 +38,9 @@ namespace ScottPlot
         public readonly List<Plottable> plottables = new List<Plottable>();
 
         // experimental figure objects
-        public readonly List<IFigureObject> figureObjects = new List<IFigureObject>();
+        public readonly List<IRenderable> figureObjectsBelowPlot = new List<IRenderable>();
+        public readonly List<IRenderable> plotObjects = new List<IRenderable>();
+        public readonly List<IRenderable> figureObjectsAbovePlot = new List<IRenderable>();
 
         // new config objects (https://github.com/swharden/ScottPlot/issues/120)
         public Config.TextLabel title = new Config.TextLabel() { fontSize = 16, bold = true };

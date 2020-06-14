@@ -10,11 +10,6 @@ namespace ScottPlot.FigureObject
 {
     public abstract class AxisLabel
     {
-        public bool IsVisible { get; set; } = true;
-        public double MinimumWidth { get; set; } = 0;
-        public double MinimumHeight { get; set; } = 0;
-        public bool IsBelowData { get { return true; } set { } }
-
         // customizable properties
         public string text { get; set; }
         public Color fontColor { get; set; } = Color.Black;
@@ -26,9 +21,6 @@ namespace ScottPlot.FigureObject
 
         public void Render(Canvas canvas)
         {
-            if (IsVisible == false)
-                return;
-
             using (Graphics gfx = Graphics.FromImage(canvas.Bmp))
             using (Font font = new Font(FontFamily.GenericSansSerif, 16))
             using (Brush fontBrush = new SolidBrush(fontColor))

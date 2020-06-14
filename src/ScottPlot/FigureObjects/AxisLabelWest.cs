@@ -6,7 +6,7 @@ using ScottPlot.FigureObject;
 
 namespace ScottPlot.FigureObjects
 {
-    class AxisLabelWest : AxisLabel, IFigureObject
+    class AxisLabelWest : AxisLabel, IRenderable
     {
         public AxisLabelWest(string text)
         {

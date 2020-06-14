@@ -1,6 +1,5 @@
 ﻿FigureObjects is an experimental namespace.
 
-My thought is to make FigureObjects similar to Plottables, but they descrbe things that are not user-provided plottable data.
+The goal is to make every part of a figure capable of rendering itself (like plottables).
 
-Storing drawing code for these objects here we can greatly simply the render loop (which currently contains
-code to do things like draw axis labels and ticks, greatly complicating it).
+This will simplify the render loop and make it easier to implement alternative rendering libraries in the future. 

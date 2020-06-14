@@ -6,15 +6,10 @@ using ScottPlot.Drawing;
 
 namespace ScottPlot.FigureObjects
 {
-    public class TicksWest : Ticks, IFigureObject
+    public class TicksWest : Ticks, IRenderable
     {
         public TicksWest()
         {
-        }
-
-        public (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas)
-        {
-            throw new NotImplementedException();
         }
 
         public void Render(Canvas canvas)

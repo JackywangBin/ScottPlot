@@ -6,14 +6,10 @@ using ScottPlot.Drawing;
 
 namespace ScottPlot.FigureObjects
 {
-    public class FigureArea : IFigureObject
+    public class FigureArea : IRenderable
     {
-        public bool IsBelowData { get { return true; } set { } }
+        public bool IsBelowData() => true;
         public bool IsVisible { get; set; } = true;
-        public double MinimumWidth { get; set; } = double.NaN;
-        public double MinimumHeight { get; set; } = double.NaN;
-        public (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas)
-            => (double.NaN, double.NaN, double.NaN, double.NaN);
 
         public Color Color = Color.White;
 

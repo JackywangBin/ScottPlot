@@ -6,15 +6,10 @@ using ScottPlot.Drawing;
 
 namespace ScottPlot.FigureObjects
 {
-    class TicksSouth : Ticks, IFigureObject
+    class TicksSouth : Ticks, IRenderable
     {
         public TicksSouth()
         {
-        }
-
-        public (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas)
-        {
-            throw new NotImplementedException();
         }
 
         public void Render(Canvas canvas)
@@ -59,7 +54,6 @@ namespace ScottPlot.FigureObjects
                         width: maxHalfWidth * 2,
                         height: maxHeight);
                     gfx.DrawString(label, font, labelBrush, labelRect, sf);
-
                 }
             }
         }

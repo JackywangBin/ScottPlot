@@ -230,18 +230,19 @@ namespace ScottPlot
         [Obsolete("Experimental render system")]
         public void RenderSetup()
         {
-            settings.figureObjects.Clear();
+            settings.figureObjectsBelowPlot.Clear();
 
-            // background
-            settings.figureObjects.Add(new FigureObjects.FigureArea(Color.White));
-            settings.figureObjects.Add(new FigureObjects.AxisLabelNorth("Example Title"));
-            settings.figureObjects.Add(new FigureObjects.AxisLabelSouth("Horizontal Axis Label"));
-            settings.figureObjects.Add(new FigureObjects.AxisLabelWest("Vertical Axis Label"));
-            settings.figureObjects.Add(new FigureObjects.DataArea(Color.LightYellow));
-            settings.figureObjects.Add(new FigureObjects.TicksWest());
-            settings.figureObjects.Add(new FigureObjects.TicksSouth());
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.FigureArea(Color.White));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelNorth("Example Title"));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelSouth("Horizontal Axis Label"));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelWest("Vertical Axis Label"));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.DataArea(Color.LightYellow));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.TicksWest());
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.TicksSouth());
 
-            // above-data objects
+            settings.plotObjects.Clear();
+
+            settings.figureObjectsAbovePlot.Clear();
         }
 
         [Obsolete("Experimental render system")]
@@ -266,15 +267,15 @@ namespace ScottPlot
             Canvas canvas = new Canvas(bmp);
 
             // render things beneath the plottables
-            foreach (var figureObject in settings.figureObjects.Where(x => x.IsBelowData))
+            foreach (var figureObject in settings.figureObjectsBelowPlot)
                 figureObject.Render(canvas);
 
             // render the plottables
-            //foreach (var plottable in settings.plottables)
-            //plottable.Render(settings);
+            foreach (var plotObject in settings.plotObjects)
+                plotObject.Render(canvas);
 
             // render things above the plottables
-            foreach (var figureObject in settings.figureObjects.Where(x => !x.IsBelowData))
+            foreach (var figureObject in settings.figureObjectsAbovePlot)
                 figureObject.Render(canvas);
         }
 

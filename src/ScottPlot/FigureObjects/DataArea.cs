@@ -6,16 +6,12 @@ using ScottPlot.Drawing;
 
 namespace ScottPlot.FigureObjects
 {
-    class DataArea : IFigureObject
+    class DataArea : IRenderable
     {
-        public bool IsBelowData { get { return true; } set { } }
+        public bool IsBelowData() => true;
         public bool IsVisible { get; set; } = true;
-        public double MinimumWidth { get; set; } = double.NaN;
-        public double MinimumHeight { get; set; } = double.NaN;
-        public (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas)
-            => (canvas.PlotLocation.x, canvas.PlotLocation.y, canvas.PlotSize.width, canvas.PlotSize.height);
 
-        public Color Color = Color.White;
+        public Color fillColor = Color.White;
 
         public DataArea()
         {
@@ -24,18 +20,15 @@ namespace ScottPlot.FigureObjects
 
         public DataArea(Color color)
         {
-            Color = color;
+            fillColor = color;
         }
 
         public void Render(Canvas canvas)
         {
             using (Graphics gfx = Graphics.FromImage(canvas.Bmp))
-            using (Brush brush = new SolidBrush(Color))
+            using (Brush brush = new SolidBrush(fillColor))
             {
-                var (x, y, width, height) = GetSizeAndPosition(canvas);
-                RectangleF rect = new RectangleF((float)x, (float)y, (float)width, (float)height);
-                Console.WriteLine($"drawing data area {Color} {rect}");
-                gfx.FillRectangle(brush, rect);
+                gfx.FillRectangle(brush, canvas.PlotLocation.x, canvas.PlotLocation.y, canvas.PlotSize.width, canvas.PlotSize.height);
             }
         }
     }
