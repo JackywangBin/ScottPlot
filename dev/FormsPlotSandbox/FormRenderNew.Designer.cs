@@ -55,15 +55,16 @@
             this.btnRender.UseVisualStyleBackColor = true;
             this.btnRender.Click += new System.EventHandler(this.btnRender_Click);
             // 
-            // NewRenderSystem
+            // FormRenderNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 534);
             this.Controls.Add(this.btnRender);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "NewRenderSystem";
+            this.Name = "FormRenderNew";
             this.Text = "NewRenderSystem";
+            this.SizeChanged += new System.EventHandler(this.FormRenderNew_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

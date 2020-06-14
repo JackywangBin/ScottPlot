@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ScottPlot.Drawing;
 
 namespace ScottPlot
 {
     public enum Layer
     {
-        Background, // probably only thing that belongs here is the background fill
-        BeforeDataFill, // axis labels, ticks, and tick labels make sense here
-        DataBackground, // probably only thing that belongs here is data fill and grid
-        AfterPlottables // things like above-plot annotations, arrows, and legend
+        FigureBackground, // probably only thing that belongs here is the background fill
+        FigureBelowData, // axis labels, ticks, and tick labels make sense here
+        DataArea, // probably only thing that belongs here is data fill and grid
+        AboveData // things like above-plot annotations, arrows, and legend
     };
 
     public interface IFigureObject
@@ -19,9 +20,8 @@ namespace ScottPlot
         double MinimumHeight { get; set; }
         Layer Layer { get; set; }
 
-        (double width, double height) GetSize();
-        (double x, double y) GetPosition();
+        (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas);
 
-        void Render(Settings settings);
+        void Render(Canvas canvas);
     }
 }

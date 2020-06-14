@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace ScottPlot.Drawing
@@ -94,6 +96,52 @@ namespace ScottPlot.Drawing
             }
 
             return pen;
+        }
+
+        public static StringFormat StringFormat(TextAlignment align)
+        {
+            StringFormat sf = new StringFormat();
+
+            // HORIZONTAL ALIGNMENT
+            if (align == TextAlignment.lowerLeft || align == TextAlignment.middleLeft || align == TextAlignment.upperLeft)
+                sf.Alignment = StringAlignment.Near;
+            else if (align == TextAlignment.lowerCenter || align == TextAlignment.middleCenter || align == TextAlignment.upperCenter)
+                sf.Alignment = StringAlignment.Center;
+            else
+                sf.Alignment = StringAlignment.Far;
+
+            // VERTICAL ALIGNMENT
+            if (align == TextAlignment.upperLeft || align == TextAlignment.upperCenter || align == TextAlignment.upperRight)
+                sf.LineAlignment = StringAlignment.Near;
+            else if (align == TextAlignment.middleCenter || align == TextAlignment.middleCenter || align == TextAlignment.middleRight)
+                sf.LineAlignment = StringAlignment.Center;
+            else
+                sf.LineAlignment = StringAlignment.Far;
+
+            return sf;
+        }
+
+        public static StringFormat StringFormat(Alignment align)
+        {
+            StringFormat sf = new StringFormat();
+
+            // HORIZONTAL ALIGNMENT
+            if (align == Alignment.West || align == Alignment.NorthWest || align == Alignment.SouthWest)
+                sf.Alignment = StringAlignment.Near;
+            else if (align == Alignment.North || align == Alignment.Center || align == Alignment.South)
+                sf.Alignment = StringAlignment.Center;
+            else
+                sf.Alignment = StringAlignment.Far;
+
+            // VERTICAL ALIGNMENT
+            if (align == Alignment.North || align == Alignment.NorthWest || align == Alignment.NorthEast)
+                sf.LineAlignment = StringAlignment.Near;
+            else if (align == Alignment.Center || align == Alignment.West || align == Alignment.East)
+                sf.LineAlignment = StringAlignment.Center;
+            else
+                sf.LineAlignment = StringAlignment.Far;
+
+            return sf;
         }
     }
 }

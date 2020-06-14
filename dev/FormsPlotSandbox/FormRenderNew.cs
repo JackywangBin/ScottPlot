@@ -16,9 +16,13 @@ namespace FormsPlotSandbox
         public FormRenderNew()
         {
             InitializeComponent();
+            Render();
         }
 
-        private void btnRender_Click(object sender, EventArgs e)
+        private void btnRender_Click(object sender, EventArgs e) => Render();
+        private void FormRenderNew_SizeChanged(object sender, EventArgs e) => Render();
+
+        private void Render()
         {
             var plt = new ScottPlot.Plot();
             plt.RenderSetup();

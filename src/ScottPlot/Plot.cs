@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
+using ScottPlot.Drawing;
 using ScottPlot.Statistics;
 
 namespace ScottPlot
@@ -230,6 +231,21 @@ namespace ScottPlot
         public void RenderSetup()
         {
             settings.figureObjects.Clear();
+
+            // background
+            settings.figureObjects.Add(new FigureObjects.FigureArea(Color.White));
+
+            // axis labels
+            settings.figureObjects.Add(new FigureObjects.AxisLabelNorth("Example Title"));
+            settings.figureObjects.Add(new FigureObjects.AxisLabelSouth("Horizontal Axis Label"));
+            settings.figureObjects.Add(new FigureObjects.AxisLabelWest("Vertical Axis Label"));
+
+            // axis ticks
+
+            // data area
+            settings.figureObjects.Add(new FigureObjects.DataArea(Color.LightGray));
+
+            // above-data objects
         }
 
         [Obsolete("Experimental render system")]
@@ -243,20 +259,24 @@ namespace ScottPlot
         [Obsolete("Experimental render system")]
         public void Render(Bitmap bmp)
         {
-            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.Background))
-                figureObject.Render(settings);
+            Console.WriteLine();
+            Canvas canvas = new Canvas(bmp);
 
-            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.BeforeDataFill))
-                figureObject.Render(settings);
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.FigureBackground))
+                figureObject.Render(canvas);
 
-            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.DataBackground))
-                figureObject.Render(settings);
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.FigureBelowData))
+                figureObject.Render(canvas);
 
-            foreach (var plottable in settings.plottables)
-                plottable.Render(settings);
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.DataArea))
+                figureObject.Render(canvas);
 
-            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.AfterPlottables))
-                figureObject.Render(settings);
+            // TODO: make all plottables use the Canvas, not Settings
+            //foreach (var plottable in settings.plottables)
+                //plottable.Render(settings);
+
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.AboveData))
+                figureObject.Render(canvas);
         }
 
         public void SaveFig(string filePath, bool renderFirst = true)
