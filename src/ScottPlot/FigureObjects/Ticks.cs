@@ -7,8 +7,7 @@ namespace ScottPlot.FigureObjects
 {
     public abstract class Ticks
     {
-        public bool IsVisible { get; set; } = true;
-        public bool IsBelowData() => true;
+        public bool IsAntiAliased { get; set; } = true;
 
         // customizable properties
         public Color tickColor { get; set; } = Color.Black;

@@ -232,15 +232,18 @@ namespace ScottPlot
         {
             settings.figureObjectsBelowPlot.Clear();
 
-            settings.figureObjectsBelowPlot.Add(new FigureObjects.FigureArea(Color.White));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.FigureArea());
             settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelNorth("Example Title"));
             settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelSouth("Horizontal Axis Label"));
             settings.figureObjectsBelowPlot.Add(new FigureObjects.AxisLabelWest("Vertical Axis Label"));
-            settings.figureObjectsBelowPlot.Add(new FigureObjects.DataArea(Color.LightYellow));
+            settings.figureObjectsBelowPlot.Add(new FigureObjects.DataArea());
             settings.figureObjectsBelowPlot.Add(new FigureObjects.TicksWest());
             settings.figureObjectsBelowPlot.Add(new FigureObjects.TicksSouth());
 
             settings.plotObjects.Clear();
+            double[] xs = DataGen.Range(-10, 10, .1);
+            double[] ys = DataGen.Sin(xs);
+            settings.plotObjects.Add(new PlotObjects.Scatter(xs, ys));
 
             settings.figureObjectsAbovePlot.Clear();
         }

@@ -8,8 +8,7 @@ namespace ScottPlot.FigureObjects
 {
     public class FigureArea : IRenderable
     {
-        public bool IsBelowData() => true;
-        public bool IsVisible { get; set; } = true;
+        public bool IsAntiAliased { get; set; } = false;
 
         public Color Color = Color.White;
 

@@ -9,7 +9,7 @@ namespace ScottPlot.FigureObjects
     class DataArea : IRenderable
     {
         public bool IsBelowData() => true;
-        public bool IsVisible { get; set; } = true;
+        public bool IsAntiAliased { get; set; } = false;
 
         public Color fillColor = Color.White;
 

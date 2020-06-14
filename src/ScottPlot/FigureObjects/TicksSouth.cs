@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Text;
 using ScottPlot.Drawing;
 
@@ -31,6 +33,12 @@ namespace ScottPlot.FigureObjects
             using (Brush labelBrush = new SolidBrush(Color.Black))
             using (StringFormat sf = Drawing.GDI.StringFormat(Alignment.North))
             {
+                if (IsAntiAliased)
+                {
+                    gfx.SmoothingMode = SmoothingMode.AntiAlias;
+                    gfx.TextRenderingHint = TextRenderingHint.AntiAlias;
+                }
+
                 for (int i = 0; i < tickCoords.Count; i++)
                 {
                     double coordinateX = tickCoords[i];

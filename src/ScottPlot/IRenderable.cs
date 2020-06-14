@@ -7,6 +7,7 @@ namespace ScottPlot
 {
     public interface IRenderable
     {
+        bool IsAntiAliased { get; set; }
         void Render(Canvas canvas);
     }
 }

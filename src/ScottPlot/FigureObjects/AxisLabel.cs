@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Text;
 using ScottPlot;
 using ScottPlot.Drawing;
@@ -10,10 +11,11 @@ namespace ScottPlot.FigureObject
 {
     public abstract class AxisLabel
     {
+        public bool IsAntiAliased { get; set; } = true;
+
         // customizable properties
         public string text { get; set; }
         public Color fontColor { get; set; } = Color.Black;
-        public Color backColor { get; set; } = Color.LightBlue;
         public Alignment alignment = Alignment.Center;
 
         public abstract (double x, double y, double width, double height) GetSizeAndPosition(Canvas canvas);
@@ -24,14 +26,16 @@ namespace ScottPlot.FigureObject
             using (Graphics gfx = Graphics.FromImage(canvas.Bmp))
             using (Font font = new Font(FontFamily.GenericSansSerif, 16))
             using (Brush fontBrush = new SolidBrush(fontColor))
-            using (Brush backBrush = new SolidBrush(backColor))
             using (StringFormat sf = GDI.StringFormat(alignment))
             {
+                if (IsAntiAliased)
+                {
+                    gfx.SmoothingMode = SmoothingMode.AntiAlias;
+                    gfx.TextRenderingHint = TextRenderingHint.AntiAlias;
+                }
+
                 var (x, y, width, height) = GetSizeAndPosition(canvas);
                 RectangleF rect = new RectangleF((float)x, (float)y, (float)width, (float)height);
-
-                if (backColor != Color.Transparent)
-                    gfx.FillRectangle(backBrush, rect);
 
                 if (angle == 0)
                 {
