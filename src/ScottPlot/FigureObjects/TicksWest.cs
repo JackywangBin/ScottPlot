@@ -43,7 +43,7 @@ namespace ScottPlot.FigureObjects
                     double coordinateY = tickCoords[i];
                     float pxX = canvas.PlotPadL;
                     float pxY = canvas.PixelY(coordinateY);
-                    string label = $"{Math.Round(coordinateY, 8)}";
+                    string label = $"{coordinateY:N2}";
 
                     // draw tick
                     gfx.DrawLine(tickLinePen, pxX, pxY, pxX - tickLength, pxY);

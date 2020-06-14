@@ -45,7 +45,7 @@ namespace ScottPlot.FigureObjects
                     float pxX = canvas.PixelX(coordinateX);
                     float pxY = canvas.Height - canvas.PlotPadB;
                     float pxTopEdge = canvas.PlotPadT;
-                    string label = $"{coordinateX}";
+                    string label = $"{coordinateX:N2}";
 
                     // draw tick
                     gfx.DrawLine(tickLinePen, pxX, pxY, pxX, pxY + tickLength);

@@ -265,9 +265,15 @@ namespace ScottPlot
             if (bmp is null)
                 return;
 
-            Debug.WriteLine("");
-
             Canvas canvas = new Canvas(bmp);
+            Render(canvas);
+        }
+
+        [Obsolete("Experimental render system")]
+        public void Render(Canvas canvas)
+        {
+            if (canvas is null)
+                return;
 
             // render things beneath the plottables
             foreach (var figureObject in settings.figureObjectsBelowPlot)

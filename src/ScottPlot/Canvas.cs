@@ -32,22 +32,36 @@ namespace ScottPlot
 
         public float PixelY(double coordinateY)
         {
-            double pixelSpan = PlotSize.height;
-            double coordSpan = PlotYmax - PlotYmin;
-            double pxPerCoordinate = pixelSpan / coordSpan;
-            double coordFromYmin = coordinateY - PlotYmin;
-            double pixelsFromYmin = coordFromYmin * pxPerCoordinate;
+            double unitsFromYmin = coordinateY - PlotYmin;
+            double pixelsFromYmin = unitsFromYmin * PxPerUnitY();
             return (float)(Height - PlotPadB - pixelsFromYmin);
         }
 
         public float PixelX(double coordinateX)
         {
-            double pixelSpan = PlotSize.width;
-            double coordSpan = PlotXmax - PlotXmin;
-            double pxPerCoordinate = pixelSpan / coordSpan;
-            double coordFromXmin = coordinateX - PlotXmin;
-            double pixelsFromXmin = coordFromXmin * pxPerCoordinate;
+            double unitsFromXmin = coordinateX - PlotXmin;
+            double pixelsFromXmin = unitsFromXmin * PxPerUnitX();
             return (float)(PlotPadL + pixelsFromXmin);
+        }
+
+        public double CoordinateX(float pixelX)
+        {
+            return 0;
+        }
+
+        public double CoordinateY(float pixelY)
+        {
+            return 0;
+        }
+
+        public float PxPerUnitX()
+        {
+            return (float)(PlotSize.width / (PlotXmax - PlotXmin));
+        }
+
+        public float PxPerUnitY()
+        {
+            return (float)(PlotSize.height / (PlotYmax - PlotYmin));
         }
 
         public Canvas(int width, int height)
@@ -55,6 +69,14 @@ namespace ScottPlot
             Bmp = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             Width = width;
             Height = height;
+        }
+
+        public void Pan(double unitsX, double unitsY)
+        {
+            PlotXmin += unitsX;
+            PlotXmax += unitsX;
+            PlotYmin += unitsY;
+            PlotYmax += unitsY;
         }
 
         public Canvas(Bitmap bmp)
