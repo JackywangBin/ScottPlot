@@ -226,6 +226,39 @@ namespace ScottPlot
             return settings.bmpFigure;
         }
 
+        [Obsolete("Experimental render system")]
+        public void RenderSetup()
+        {
+            settings.figureObjects.Clear();
+        }
+
+        [Obsolete("Experimental render system")]
+        public Bitmap Render(int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format32bppPArgb);
+            Render(bmp);
+            return bmp;
+        }
+
+        [Obsolete("Experimental render system")]
+        public void Render(Bitmap bmp)
+        {
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.Background))
+                figureObject.Render(settings);
+
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.BeforeDataFill))
+                figureObject.Render(settings);
+
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.DataBackground))
+                figureObject.Render(settings);
+
+            foreach (var plottable in settings.plottables)
+                plottable.Render(settings);
+
+            foreach (var figureObject in settings.figureObjects.Where(x => x.Layer == Layer.AfterPlottables))
+                figureObject.Render(settings);
+        }
+
         public void SaveFig(string filePath, bool renderFirst = true)
         {
             if (renderFirst)
@@ -2090,7 +2123,7 @@ namespace ScottPlot
             dataBackground
         */
 
-        public void Style(
+            public void Style(
             Color? figBg = null,
             Color? dataBg = null,
             Color? grid = null,

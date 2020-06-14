@@ -1,0 +1,6 @@
+﻿FigureObjects is an experimental namespace.
+
+My thought is to make FigureObjects similar to Plottables, but they descrbe things that are not user-provided plottable data.
+
+Storing drawing code for these objects here we can greatly simply the render loop (which currently contains
+code to do things like draw axis labels and ticks, greatly complicating it).

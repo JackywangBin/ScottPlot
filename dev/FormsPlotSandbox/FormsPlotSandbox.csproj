@@ -74,6 +74,12 @@
     <Compile Include="FormSlowPan.Designer.cs">
       <DependentUpon>FormSlowPan.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRenderNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRenderNew.Designer.cs">
+      <DependentUpon>FormRenderNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMouse.resx">
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSlowPan.resx">
       <DependentUpon>FormSlowPan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRenderNew.resx">
+      <DependentUpon>FormRenderNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

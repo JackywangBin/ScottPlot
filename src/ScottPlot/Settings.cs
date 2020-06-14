@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using ScottPlot;
 
 // TODO: move plottables to their own module
 // TODO: move mouse/axes interaction functions into the mouse module somehow
@@ -35,6 +36,9 @@ namespace ScottPlot
 
         // plottables
         public readonly List<Plottable> plottables = new List<Plottable>();
+
+        // experimental figure objects
+        public readonly List<IFigureObject> figureObjects = new List<IFigureObject>();
 
         // new config objects (https://github.com/swharden/ScottPlot/issues/120)
         public Config.TextLabel title = new Config.TextLabel() { fontSize = 16, bold = true };
