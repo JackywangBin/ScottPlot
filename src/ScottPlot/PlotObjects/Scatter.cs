@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScottPlot.FigureObject
+namespace ScottPlot.PlotObjects
 {
-    class Colorbar
+    class Scatter
     {
     }
 }

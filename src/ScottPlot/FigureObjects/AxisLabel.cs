@@ -13,7 +13,7 @@ namespace ScottPlot.FigureObject
         public bool IsVisible { get; set; } = true;
         public double MinimumWidth { get; set; } = 0;
         public double MinimumHeight { get; set; } = 0;
-        public Layer Layer { get { return Layer.FigureBelowData; } set { } }
+        public bool IsBelowData { get { return true; } set { } }
 
         // customizable properties
         public string text { get; set; }

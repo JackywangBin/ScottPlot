@@ -8,7 +8,7 @@ namespace ScottPlot.FigureObjects
 {
     class DataArea : IFigureObject
     {
-        public Layer Layer { get { return Layer.DataArea; } set { } }
+        public bool IsBelowData { get { return true; } set { } }
         public bool IsVisible { get; set; } = true;
         public double MinimumWidth { get; set; } = double.NaN;
         public double MinimumHeight { get; set; } = double.NaN;
